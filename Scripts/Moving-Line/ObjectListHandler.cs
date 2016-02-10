@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-namespace TileMatch
+namespace TileMatch.MovingLine
 {
 	public class ObjectListHandler : MonoBehaviour 
 	{
