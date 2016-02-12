@@ -1,14 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-/*
-	This code is based on the tutorial and source code from Catlike Coding.
-	Link: http://catlikecoding.com/unity/tutorials/curves-and-splines/
-*/
 namespace TileMatch.MovingLine.BezierCurve
 {
 	public static class Bezier 
 	{
-
 		public static Vector3 GetPoint (Vector3 p0, Vector3 p1, Vector3 p2, float t) {
 			t = Mathf.Clamp01(t);
 			float oneMinusT = 1f - t;
