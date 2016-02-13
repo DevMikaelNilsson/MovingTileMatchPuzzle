@@ -8,6 +8,9 @@ namespace TileMatch.MovingLine
 {
 	public class MovingLineHandler : MonoBehaviour 
 	{
-
+		public void AddObjectToList(GameObject newObject)
+		{
+			newObject.SetActive(true);
+		}
 	}
 }
