@@ -10,7 +10,7 @@ namespace TileMatch.MovingLine
 	{
 		public void AddObjectToList(GameObject newObject)
 		{
-			newObject.SetActive(true);
+
 		}
 	}
 }

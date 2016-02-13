@@ -71,12 +71,8 @@ namespace TileMatch.MovingLine
 			for (int i = 0; i < objectCount; ++i) 
 			{
 				int randomIndex = UnityEngine.Random.Range (0, AvailableObjects.Length);
-				GameObject newObject = CreateObject(AvailableObjects[randomIndex]);
-				if (newObject != null) 
-				{
-					newObject.SetActive (false);
-					m_predefinedObjectList.Add(newObject);
-				} 
+				if (AvailableObjects[randomIndex] != null)
+					m_predefinedObjectList.Add(AvailableObjects[randomIndex]);
 				else
 					Debug.LogWarning (this + " - Could not create object from prefab (" + AvailableObjects [randomIndex] + ").");
 			}
@@ -85,54 +81,17 @@ namespace TileMatch.MovingLine
 		}
 
 		/// <summary>
-		/// Instantiates a object from a prefab.
-		/// This method uses the default Unity Instantiate method to create the new Object.
-		/// To increase overall performance, this method should be overriden and make use of a ObjectPool method instead.
-		/// </summary>
-		/// <returns>The new created object.</returns>
-		/// <param name="prefab">Prefab object which the new object will be created from.</param>
-		protected virtual GameObject CreateObject(GameObject prefab)
-		{
-			if(prefab != null)
-				return GameObject.Instantiate(prefab);
-
-			return null;
-		}
-
-		/// <summary>
-		/// Destroies the object.
-		/// This method uses the default Untiy Destroy method to destroy the object.
-		/// To increase overall performance, this method should be overriden and make use of a ObjectPool method instead.
-		/// </summary>
-		/// <param name="objectToDestroy">Object to destroy.</param>
-		protected virtual void DestroyObject(GameObject objectToDestroy)
-		{
-			if(objectToDestroy != null)
-				GameObject.Destroy(objectToDestroy);
-		}
-
-		/// <summary>
-		/// Removes the object from the game.
-		/// </summary>
-		/// <param name="objectToDestroy">Object to remove.</param>
-		public void RemoveObject(GameObject objectToDestroy)
-		{
-			DestroyObject(objectToDestroy);
-		}
-
-		/// <summary>
-		/// Generates a new custom object.
-		/// The custom object is a specific object which can be used when the maximum object count has been reached.
-		/// Do note that the flag 'AddWhenMaxCountReached' must be set to 'CustomObject' in order to generate a new object.
+		/// Gets the custom object prefab.
+		/// Do note that the flag 'AddWhenMaxCountReached' must be set to 'CustomObject' in order to return the prefab object.
 		/// If the flag is NOT set to 'CustomObject', or if the CustomObject is null, this method will return null by default.
 		/// </summary>
-		/// <returns>A new created custom object.</returns>
+		/// <returns>A custom object prefab.</returns>
 		public GameObject GetCustomObject()
 		{
 			switch(AddWhenMaxCountReached)
 			{
 				case AddType.CustomObject:
-					return CreateObject(AddCustomObject);
+					return AddCustomObject;
 			}
 
 			return null;
